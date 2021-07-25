@@ -1,23 +1,75 @@
-// select the user input field
-// var menu = d3.select("#selDataset");
-
-
-// select the dropdown menu 
+//giving the dropdown menu functionality
 function dropDownMenu() {
     var menu = d3.select("#selDataset");
 
     d3.json("samples.json").then((data) => {
+        var sampleName = data.names;
+        sampleName.forEach((name) => {
+            menu
+            .append("option")
+            .text(name)
+            .property("value", name);                
+        });
 
+        //set default
+        const defaultSample = sampleName[0];
+        demoTable(defaultSample);
+        charting(defaultSample);
+    });
+}
 
-    }
+function optionChanged(sampleName) {
+    demoTable(sampleName)
+    charting(sampleName);
+}
 
+function demoTable(sampleName) {
+    d3.json("samples.json").then((data) => {
+        var tabInfo = data.metadata;
+        console.log(tabInfo)
+        var filtered = tabInfo.filter(x => x.id == sampleName)[0];
+        console.log(filtered)
+        var tablegraphic = d3.select("#sample-metadata");
+        tablegraphic.html("")
+        
+        Object.entries(filtered).forEach(([key,value]) => {
+            var row = tablegraphic.append('tr');
+            var cell = tablegraphic.append('td');
+            cell.text(key.toUpperCase() + `: ${value}`)
+            var cell = row.append('td');
+        });
+    });
+}
 
-// 1. Use the D3 library to read in `samples.json`.
+function charting(sampleName) {
+    d3.json("samples.json").then((data) => {
+        var tabInfo = data.samples;
+        var filtered = tabInfo.filter(x => x.id.toString() === sampleName)[0];
+        console.log(filtered)
+        var otu_ids = filtered.otu_ids;
+        var otu_labels = filtered.otu_labels
+        var sample_values = filtered.sample_values;
+        
+        //bar chart
+        var trace1 = {
+            type: "bar",
+            orientation: "h",
+            x: sample_values.slice(1,10),
+            y: otu_ids.slice(1,10).map(x => `OTU ${x}`),
+        };
 
-// 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
+        var data1 = [trace1];
 
-// * Use `sample_values` as the values for the bar chart.
+        var layout1 = {
+            title: "Top 10 OTU",
+            xaxis: { title: "OTU (Operational Taxonomic Unit) Labels" },
+            yaxis: { title: "OTU (Operational Taxonomic Unit) IDs" }
+        };
+        Plotly.newPlot("bar", data1, layout1);
 
-// * Use `otu_ids` as the labels for the bar chart.
+        // Add code for bubble chart 
+    });
+}
 
-// * Use `otu_labels` as the hovertext for the chart.
+//initialize Dashboard
+dropDownMenu();
