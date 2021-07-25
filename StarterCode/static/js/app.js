@@ -62,12 +62,37 @@ function charting(sampleName) {
 
         var layout1 = {
             title: "Top 10 OTU",
+            // yaxis: dict(autorange="reversed"),
             xaxis: { title: "OTU (Operational Taxonomic Unit) Labels" },
-            yaxis: { title: "OTU (Operational Taxonomic Unit) IDs" }
+            yaxis: { 
+                title: "OTU (Operational Taxonomic Unit) IDs",
+                autorange: "reversed"
+            }
         };
         Plotly.newPlot("bar", data1, layout1);
 
         // Add code for bubble chart 
+        var trace1 = {
+            x: otu_ids,
+            y: sample_values,
+            text: otu_labels,
+            mode: 'markers',
+            marker: {
+              color: otu_ids,
+              opacity: [1, 0.8, 0.6, 0.4],
+              size: sample_values
+            }
+          };
+          
+          var data = [trace1];
+          
+          var layout = {
+            showlegend: false,
+            height: 600,
+            width: 1000
+          };
+          
+          Plotly.newPlot('bubble', data, layout);
     });
 }
 
