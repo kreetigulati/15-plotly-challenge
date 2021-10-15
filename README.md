@@ -6,8 +6,9 @@ In this assignment, we will build an interactive dashboard to explore the [Belly
 
 The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.
 
-# Start local host index file using this code to display index.html page
-  * python -m http.server
+## Summary
+  * Using the provided data on Belly Button Biodiversity, our goal is to create and interactive dashboard using HTML/CSS, Plotly, and D3. The purpose of the interactive dashboard is to provide the scientist the ability to read through the data quickly to find the answers they are searching. 
+  * The first step was create link to the JavaScript files to the HTML page and ensure that the bubble chart and bar chart update as the dropdown menu and demogrpahic information udpates for each specific OTU selected.
 
 ## Step 1: Plotly
 
@@ -21,7 +22,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 * Use `otu_labels` as the hovertext for the chart.
 
-  ![bar Chart](Images/hw01.png)
+  ![bar Chart](https://github.com/kreetigulati/15-plotly-challenge/blob/main/Images/barchart.png)
 
 3. Create a bubble chart that displays each sample.
 
@@ -35,20 +36,20 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 * Use `otu_labels` for the text values.
 
-![Bubble Chart](Images/bubble_chart.png)
+![Bubble Chart](https://github.com/kreetigulati/15-plotly-challenge/blob/main/Images/matchingbubblechart.png)
 
 4. Display the sample metadata, i.e., an individual's demographic information.
 
 5. Display each key-value pair from the metadata JSON object somewhere on the page.
 
-![hw](Images/hw03.png)
+![hw](https://github.com/kreetigulati/15-plotly-challenge/blob/main/Images/updatedropdowninfo.png)
 
 6. Update all of the plots any time that a new sample is selected.
 
 
 ## Deployment
 
-* Link to live, static webpage: 
+* Link to live, static webpage: https://kreetigulati.github.io/(https://kreetigulati.github.io/)
 
 
 ### About the Data
