@@ -49,7 +49,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 ## Deployment
 
-* Link to live, static webpage: https://kreetigulati.github.io/(https://kreetigulati.github.io/)
+* Link to live, static webpage: [https://kreetigulati.github.io/](https://kreetigulati.github.io/)
 
 
 ### About the Data
